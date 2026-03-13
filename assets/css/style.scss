@@ -18,3 +18,16 @@
   margin: 0;
   max-width: none;
 }
+.thumbnails {
+  margin-left: -20px !important;
+}
+.thumbnails li {
+  width: 300px !important;
+  height: 350px !important;
+}
+.thumbnails li .thumbnail {
+  padding: 0px 0px 10px !important;
+}
+.thumbnails li img {
+  margin: 0px 0px 5px !important;
+}
