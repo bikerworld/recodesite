@@ -8,12 +8,13 @@
   padding-top: 45px;
 }
 
-#home .wrapper,
-#artwork .wrapper {
+#home .page-content {
+  padding: 0;
+}
+
+#home .page-content .wrapper,
+#artwork .page-content .wrapper {
   padding: 0;
   margin: 0;
   max-width: none;
-}
-#home .page-content {
-  padding: 0;
 }
