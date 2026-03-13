@@ -7,3 +7,4 @@ vendor
 *.env
 
 /assets/img/trans/*
+/html/*
