@@ -1,29 +1,16 @@
-* Clone heroku code 
-* copy heroku env vars into a .env file at project root
-* comment out any lines in the .env file related to python and paths
-* add a SECRET_KEY entry in the .env file set to any random string of characters
-* create a virtual environment and activate it
-* `pip install -r requirements.txt`
-* `heroku local web`
+## About
 
-To get hot reloading on the server so you can see your changes without restarting the server, go the bottom of app.py and turn debugging on. 
+The ReCode Project is a community-driven effort to preserve computer art by translating it into a modern programming language. Every translated work is available to the public and contemporary artists to learn from, share, and build on.
 
+## Running locally
 
-## Managing Database
-It is recommended to use MongoDB Compass (local app) to connect to the database to edit/delete records. You will need the connection URI with user:pswd to connect. See env vars.
+This website is a static website generated with jekyllrb.
+To run it locally, you can use docker
 
-### Change log
----
-04/2020 - User reported being unable to submit translation
-Cause: outdated code
-Fixes: 
-* updated python runtime version
-* updated failing function calls
-* updated boto s3 connection function names
-* created new AWS access key and updated Heroku config vars
+```
+docker compose up --build
+```
 
-08/2020 - Migration to MongoDB Atlas
-mLab is being shut down so had to migrate
-* changed value of MONGOLAB_URI env var in heroku settings
-* added `dnspython` to requirements
-* changed password in Atlas settings for default user (removed `@`)
+## Changelog
+
+- 2026-03 : Rewrite the website to be able to host it on any free static hosting provider (netlify, vercel, github pages, cloudflare, ...)
