@@ -7,7 +7,7 @@ body_id: artwork
 <div class="row-fluid offset1">
 	<div class="span10" name="display" style="margin-top:150px">
 		<div class="span5" name="image">
-			<img src="{{ page.photo_link | relative_url }}" width="400" height="400">
+			<img src="{{ '/assets/img/' | append: page.photo_link | relative_url }}" width="400" height="400">
 		</div>
 		<div class="span5" name="data" style="margin-top:-20px">
 			<p><h2>{{ page.title }}</h2></p>

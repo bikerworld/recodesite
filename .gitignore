@@ -6,4 +6,4 @@ _site
 vendor
 *.env
 
-/static/img/trans/*
+/assets/img/trans/*

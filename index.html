@@ -5,7 +5,7 @@ body_id: home
 
 <div class="hero-unit" align="center" style="padding-top:125px;padding-bottom:75px">
     <a href="/" align="center" style="margin-top:10">
-        <img src="static/img/recode_logo.png">
+        <img src="{{ '/assets/img/recode_logo.png' | relative_url }}">
     </a>
     <h2 align="center">THE RECODE PROJECT</h2>
     <p>An active archive of computer art.</p>
@@ -111,7 +111,7 @@ body_id: home
                 {% assign url = "/artwork/" | append: a.slug | relative_url %}
                     <li>
                     <div class="thumbnail">
-                        <a href="{{ url }}"><img src="{{ a.photo_link | relative_url }}"></a>
+                        <a href="{{ url }}"><img src="{{ '/assets/img/' | append: a.photo_link | relative_url }}"></a>
                         <div class="caption">
                             <a href="{{ url }}">{{ a.title }}</a>
                             <strong><p style="color:black">{{ a.artist }}</p></strong>

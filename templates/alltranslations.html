@@ -41,14 +41,14 @@ h5 {
 </style>
 {% endblock %}
 
-{% block body %} 
+{% block body %}
 
 <div class="row-fluid offset1">
-    <h3>Translations</h3> 
+    <h3>Translations</h3>
     <hr>
         <ul class="thumbnails">
             {% if translations|length > 0 %}
-                {% for t in translations %}   
+                {% for t in translations %}
                     <li>
                         <div class="thumbnail">
 
@@ -65,7 +65,7 @@ h5 {
                             </div>
                         </div>
                     </li>
-                {% endfor %}  
+                {% endfor %}
             {% endif %}
         </ul>
 </div>
