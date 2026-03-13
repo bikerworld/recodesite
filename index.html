@@ -107,7 +107,7 @@ body_id: home
 
             <ul class="thumbnails">
             {% for a in site.artworks %}
-                {% if a.source_detail == v.id %}
+                {% if a.source_id == v.id %}
                 {% assign url = "/artwork/" | append: a.slug | relative_url %}
                     <li>
                     <div class="thumbnail">
