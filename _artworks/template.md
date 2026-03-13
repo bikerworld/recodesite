@@ -2,7 +2,7 @@
 title:
 artist:
 source:
-source_detail:
+source_id:
 source_link:
 photo_link:
 code_link:

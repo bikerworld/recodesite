@@ -3,7 +3,7 @@ layout: base
 body_id: artwork
 ---
 
-{% assign document =  site.data.volumes | where: "id", page.source_detail %}
+{% assign document = site.data.volumes | find: "id", page.source_id  %}
 <div class="row-fluid offset1">
 	<div class="span10" name="display" style="margin-top:150px">
 		<div class="span5" name="image">
@@ -13,14 +13,12 @@ body_id: artwork
 			<p><h2>{{ page.title }}</h2></p>
 			<p><h3>{{ page.artist }}</h3></p>
 			</br>
-			source: {{ page.source }}</br>
+			source: {{ page.source }}
 			{% if document %}
-			source document : <a href="{{ document.url }}" target="_blank">{{ document.id }}</a>
-			{% else %}
-			source document : <a href="{{ document.url }}" target="_blank">{{ page.source }}</a>
+			&dash; <a href="{{ document.url }}" target="_blank">{{ document.id }}</a>
 			{% endif %}
 			</br>
-			date:   {{ page.periood }}
+			date: {{ page.period }}
 			</br>
 			</br>
 			{% if page.description %}
