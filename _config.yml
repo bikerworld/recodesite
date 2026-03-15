@@ -27,6 +27,12 @@ collections:
     output: true
     permalink: /artwork/:slug
     sort_by: position
+  p5js:
+    output: true
+    permalink: /translations/p5js/:slug
+  pde:
+    output: true
+    permalink: /translations/pde/:slug
 
 # defaults values for collections
 defaults:
@@ -35,6 +41,16 @@ defaults:
       type: artworks
     values:
       layout: "artwork"
+  - scope:
+      path: ""
+      type: p5js
+    values:
+      layout: "p5js"
+  - scope:
+      path: ""
+      type: pde
+    values:
+      layout: "pde"
 
 minima:
   # Minima skin selection. Available skins are:
@@ -53,6 +69,7 @@ minima:
   #   should be rendered.
   nav_pages:
     - guide.html
+    - translations.html
 
   # Set to `true` to show excerpts on the homepage.
   show_excerpts: false
@@ -75,3 +92,9 @@ minima:
   #   - title: Jekyll at X (formerly Twitter)
   #     icon: x-twitter
   #     url: "https://x.com/jekyllrb"
+
+exclude:
+  - README.md
+  - script/
+  - old
+  - _plugins

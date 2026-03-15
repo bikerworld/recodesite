@@ -1,0 +1,17 @@
+---
+layout: page
+title: All P5js translations
+permalink: /alltranslations
+---
+
+<div class="row-fluid">
+  <ol class="thumbnails">
+    {% for t in site.p5js %} {% assign artwork = site.artworks | find: "slug", t.artwork_slug %}
+    <li>
+      {% assign url = "/translations/p5js/" | append: t.slug | relative_url %}
+
+      <a href="{{ url }}">{{ t.title }}</a> by {{ artwork.artist }} &bull; Translated by {{t.translator }} [{{t.category}}]
+    </li>
+    {% endfor %}
+  </ol>
+</div>
