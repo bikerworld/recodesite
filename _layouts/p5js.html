@@ -61,38 +61,36 @@ body_id: translation
 
       // Create iframe
       const iframe = document.createElement("iframe");
-      container.appendChild(iframe);
       iframe.setAttribute('id', 'sketch-iframe');
-
-      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      container.appendChild(iframe);
 
       // Iframe onload => resize canvas
       iframe.addEventListener("load", () => 
       {
+
         // No margin / padding on iframe document
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
         doc.body.style.margin = "0";
         doc.body.style.padding = "0";
 
         // Check when canvas is here
+        /*
         const observer = new MutationObserver(() => 
         {
             const canvas = doc.querySelector("canvas");
             if (canvas) 
             {
+              console.log('here')
               observer.disconnect();
-              /*if (bFirstLoad)
-              {
-                bFirstLoad = false;
-                setTimeout( _=>{ resizeSketch(iframe,canvas) }, 150 ); 
-              }
-              else */
               resizeSketch(iframe,canvas);
             }
           });
 
         observer.observe(doc.body, { childList: true, subtree: true }); 
-         
+         */
       });
+
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
 
 
       doc.open();
@@ -102,7 +100,20 @@ body_id: translation
           <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.10/p5.min.js"><\/script>
       </head>
       <body>
-          <script>${code}<\/script>
+          <script>
+          const observer = new MutationObserver(() => 
+          {
+            const c = document.querySelector("canvas");
+            if (c) 
+            {
+              console.log('canvas creation observed');
+              observer.disconnect();
+              window.parent.resizeSketch(c.clientWidth, c.clientHeight);
+            }
+          });
+          observer.observe(document.body, { childList: true, subtree: true }); 
+          <\/script>
+        <script>${code}<\/script>
       </body>
       </html>
       ` : ``);
@@ -115,28 +126,26 @@ body_id: translation
       container.innerHTML='';
     }
 
-    function resizeSketch(iframe,canvas) 
+    window.resizeSketch = (w,h)=>
     {
-      const ratio = canvas.height / canvas.width;
-
+      console.log(`resizeSketch(${w},${h})`);
+      const ratio = h / w;
       function resize() 
       {
-        // Get height of the p5 created canvas
-        const width = canvas.parentElement.clientWidth;
+        let iframe = document.getElementById("sketch-iframe");
+        let canvas = iframe.contentWindow.document.querySelector("canvas");
 
         // Set the iframe height
-        iframe.height = width * ratio + "px";
+        iframe.height = w * ratio + "px";
 
         // Adjust canvas display
         canvas.style.width = "100%";
-        canvas.style.height = iframe.height;
+        canvas.style.height = "";
       }
 
       // Resize
       resize();
       window.addEventListener("resize", resize);
-    }    
-
-
+    }
 
 </script>
