@@ -41,7 +41,11 @@ body_id: artwork
 </div>
 
 <hr>
-
+{% if page.restricted %}
+<div class = "row-fluid">
+	This artist explicitly requested that their work not be reproduced online. We are respecting this request by not sharing any translation code for this artwork.
+</div>
+{% else %}
 <div class = "row-fluid">
 		<h3>Translations</h3>
 </div>
@@ -66,3 +70,4 @@ body_id: artwork
 		</div>
 	</div>
 </div>
+{% endif %}

@@ -5,6 +5,12 @@ body_id: translation
 
 {%- include translator.html -%}
 
+{% assign artwork = site.artworks | find: "slug", page.artwork_slug %}
+{% if artwork.restricted %}
+<div class="row-fluid">
+<p>This translation is currently restricted.</p>
+</div>
+{% else %}
 <div class="sketch-wrapper row-fluid">
   <div id="sketch">
   </div>
@@ -27,7 +33,7 @@ body_id: translation
 
     var bFirstLoad = true;
 
-    window.addEventListener('load', () => 
+    window.addEventListener('load', () =>
     {
       // Get code
       let codeRaw = document.getElementById("code").value;
@@ -65,7 +71,7 @@ body_id: translation
       container.appendChild(iframe);
 
       // Iframe onload => resize canvas
-      iframe.addEventListener("load", () => 
+      iframe.addEventListener("load", () =>
       {
 
         // No margin / padding on iframe document
@@ -75,10 +81,10 @@ body_id: translation
 
         // Check when canvas is here
         /*
-        const observer = new MutationObserver(() => 
+        const observer = new MutationObserver(() =>
         {
             const canvas = doc.querySelector("canvas");
-            if (canvas) 
+            if (canvas)
             {
               console.log('here')
               observer.disconnect();
@@ -86,7 +92,7 @@ body_id: translation
             }
           });
 
-        observer.observe(doc.body, { childList: true, subtree: true }); 
+        observer.observe(doc.body, { childList: true, subtree: true });
          */
       });
 
@@ -97,21 +103,21 @@ body_id: translation
       doc.write(code ? `
       <html>
       <head>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.10/p5.min.js"><\/script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/{{ page.p5_version | default: '1.11.10' }}/p5.min.js"><\/script>
       </head>
       <body>
           <script>
-          const observer = new MutationObserver(() => 
+          const observer = new MutationObserver(() =>
           {
             const c = document.querySelector("canvas");
-            if (c) 
+            if (c)
             {
               console.log('canvas creation observed');
               observer.disconnect();
               window.parent.resizeSketch();
             }
           });
-          observer.observe(document.body, { childList: true, subtree: true }); 
+          observer.observe(document.body, { childList: true, subtree: true });
           window.addEventListener("resize", _=>{window.parent.resizeSketch()});
           <\/script>
 
@@ -144,3 +150,5 @@ body_id: translation
     }
 
 </script>
+
+{% endif %}
