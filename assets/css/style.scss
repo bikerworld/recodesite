@@ -8,10 +8,20 @@
 /*
 ————————— global
 */
-body
-{
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Oxygen Mono", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #ffffff;
   overflow-x: hidden;
 }
+
 
 hr
 {
@@ -45,6 +55,7 @@ hr
     background-color: #1b1b1b;
     box-sizing: border-box;
     justify-content: space-between;
+    margin: 0;
 }
 
 .navbar .nav
@@ -59,10 +70,6 @@ hr
   margin:0;
 }
 
-.navbar-fixed-top
-{
-  margin:0;
-}
 
 .navbar-search
 {
@@ -107,6 +114,14 @@ hr
 /*
 ————————— index.html
 */
+#home #recode-title
+{
+  text-align: center;
+  padding: 60px;
+  margin-bottom: 30px;
+  background-color: #EEE;
+}
+
 .home_links a
 {
   color: #ab0000;
@@ -117,6 +132,12 @@ hr
   padding: 0;
   width: 100%;
 }
+
+#current-projects
+{
+  background-color : #EEE;
+}
+
 
 #home .page-content .wrapper,
 #artwork .page-content .wrapper {
@@ -134,26 +155,47 @@ hr
   padding: 0;
 }
 
-.artworks.thumbnails .thumbnail a img {
-  width: 100%;
+.artworks.thumbnails .thumbnail a
+{
+  display: inline-block;
 }
 
-.artworks.thumbnails .thumbnail .caption {
-  text-align: center;
+.artworks.thumbnails .thumbnail a img 
+{
+  width: 100%;
+  transform: scale(1);
+  transition: transform 0.25s;
 }
-.caption a {
+
+.artworks.thumbnails .thumbnail a:hover img 
+{
+  transform: scale(0.985);
+}
+
+.artworks.thumbnails .thumbnail .caption 
+{
+  text-align: center;
+  box-sizing: border-box;
+  padding: 5px 0 0 0;
+}
+
+.caption a 
+{
   display: block;
   text-decoration: none;
 }
 
-#list-magazines {
-  box-sizing: border-box;
-  padding: 30px 0 0 0;
+#list-magazines 
+{
+  display:        flex;
+  box-sizing:     border-box;
+  padding:        30px 0 0 0;
+  justify-content: center;
 }
 
 .nav-margin
 {
-  margin-top: 40px;
+  margin-top:     40px;
 }
 
 /*

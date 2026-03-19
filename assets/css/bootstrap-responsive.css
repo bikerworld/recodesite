@@ -100,15 +100,6 @@
     margin-left: -30px;
     *zoom: 1;
   }
-  .row:before,
-  .row:after {
-    display: table;
-    line-height: 0;
-    content: "";
-  }
-  .row:after {
-    clear: both;
-  }
   [class*="span"] {
     float: left;
     min-height: 1px;
