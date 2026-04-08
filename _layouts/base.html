@@ -3,7 +3,6 @@
   <head>  
   {%- include head.html -%}
   {%- if layout.body_id == "translation" or layout.body_id == "artwork" -%}
-    {%- assign artist = site.artists | find: "name", artwork.artist -%}
     
     {%- assign og_title = page.title -%}
     {%- assign og_type = 'article' -%}
@@ -11,10 +10,10 @@
 
     {%- if layout.body_id == "translation" -%}
 
-    {%- assign artwork = site.artworks | find: "slug", page.artwork_slug -%}
+      {%- assign artwork = site.artworks | find: "slug", page.artwork_slug -%}
       {%- assign og_image = '/assets/img/' | append: artwork.photo_link | absolute_url -%}
       {%- capture og_description -%}
-        {{ page.title }} — translated by {{ page.translator }}. Based on "{{ artwork.title }}" by {{ artist.name }}.
+        {{ page.title }} — translated by {{ page.translator }}. Based on "{{ artwork.title }}" by {{ artwork.artist }}.
       {%- endcapture -%}
 
     {%- elsif layout.body_id == "artwork" -%}
