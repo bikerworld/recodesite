@@ -14,11 +14,14 @@ body_id: artist
   <div class="artworks thumbnails">
   {% assign artworks = site.artworks | where: "artist", page.name %}
   {% for a in artworks %}
+  {% if a.canonical %}{% continue %}{% endif %}
       {% assign url = "/artworks/" | append: a.slug | relative_url %}
           <div class="thumbnail">
               <a href="{{ url }}"><img src="{{ '/assets/img/' | append: a.photo_link | relative_url }}"></a>
               <div class="caption">
                   <a href="{{ url }}" class="artwork">{{ a.title }}</a>
+                  <br>
+                  <span class="source">{{ a.source_id }}{% if a.also_in %} {% for extra in a.also_in %}&amp; {{ extra.source_id }} {% endfor %}{% endif %}</span>
               </div>
           </div>
   {% endfor %}

@@ -5,6 +5,26 @@ body_id: artwork
 
 {% assign document = site.data.volumes | find: "id", page.source_id  %}
 {% assign translations = site.p5js | where: "artwork_slug", page.slug %}
+{% if page.also_in %}
+  {% assign duplicates = site.artworks | where: "canonical", page.slug %}
+  {% for dup in duplicates %}
+    {% assign dup_t = site.p5js | where: "artwork_slug", dup.slug %}
+    {% assign translations = translations | concat: dup_t %}
+  {% endfor %}
+{% elsif page.canonical %}
+  {% assign master = site.artworks | where: "slug", page.canonical | first %}
+  {% if master %}
+    {% assign master_t = site.p5js | where: "artwork_slug", master.slug %}
+    {% assign translations = translations | concat: master_t %}
+    {% assign siblings = site.artworks | where: "canonical", master.slug %}
+    {% for s in siblings %}
+      {% unless s.slug == page.slug %}
+        {% assign sib_t = site.p5js | where: "artwork_slug", s.slug %}
+        {% assign translations = translations | concat: sib_t %}
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
 
 <div class="row-fluid">
 	<div class="container-artwork" name="display" style="margin-top: 50px;">
@@ -21,7 +41,23 @@ body_id: artwork
 			<p><h3><a href="{{ url }}">{{ page.artist }}</a></h3></p>
 			</br>
 			source: {{ page.source }}
-			{% if document %}
+			{% if page.also_in %}
+			&dash; {% if document %}<a href="{{ document.url }}" target="_blank" rel="noopener noreferrer">{{ document.id }}</a>{% else %}{{ page.source_id }}{% endif %} ({{ page.period }})
+			{% for extra in page.also_in %}
+				{% assign extra_doc = site.data.volumes | find: "id", extra.source_id %}
+				&amp; {% if extra_doc %}<a href="{{ extra_doc.url }}" target="_blank" rel="noopener noreferrer">{{ extra_doc.id }}</a>{% else %}{{ extra.source_id }}{% endif %} ({{ extra.period }})
+			{% endfor %}
+			{% elsif page.canonical %}
+			{% assign master = site.artworks | where: "slug", page.canonical | first %}
+			{% if master %}
+				{% assign master_doc = site.data.volumes | find: "id", master.source_id %}
+				&dash; {% if master_doc %}<a href="{{ master_doc.url }}" target="_blank" rel="noopener noreferrer">{{ master_doc.id }}</a>{% else %}{{ master.source_id }}{% endif %} ({{ master.period }})
+				{% for extra in master.also_in %}
+					{% assign extra_doc = site.data.volumes | find: "id", extra.source_id %}
+					&amp; {% if extra_doc %}<a href="{{ extra_doc.url }}" target="_blank" rel="noopener noreferrer">{{ extra_doc.id }}</a>{% else %}{{ extra.source_id }}{% endif %} ({{ extra.period }})
+				{% endfor %}
+			{% endif %}
+			{% elsif document %}
 			&dash; <a href="{{ document.url }}" target="_blank" rel="noopener noreferrer">{{ document.id }}</a>
 			{% endif %}
 			</br>
