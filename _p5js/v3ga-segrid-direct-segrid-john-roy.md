@@ -20,7 +20,7 @@ let nbLinesMin        = 1;
 let nbLinesMax        = 9;
 let nbLinesHalfCell   = 5;    // used to compute the 'gap' between lines in a cell
 let margin            = 0.05; // % of width
-let sw                = 1.5;  // pixels
+let sw                = 1.5;  // line width in pixels
 let bDrawGrid         = false;
 
 function setup() 
@@ -57,22 +57,10 @@ function draw()
       
       // Density
       let dst = max(abs(i - cx), abs(j - cy));
-      let n = map(dst / dMax,0,nbLinesMin,nbLinesMax,1);
+      let n = map(dst / dMax,0,1,nbLinesMax,nbLinesMin);
 
       // Draw pattern
-      // Scale 's' = modulate size segments
-      let s = map(dst / dMax,0,1,-0.8,1);
       drawPattern(x,y,d,i,j,n);              
-    
-      if (!isNaN(n) && false)
-      {
-        push();
-        noStroke();
-        fill(255,0,0);
-        text(`${n}`,x+5,y+15);
-        pop();
-        
-      }
     }
 }
 
